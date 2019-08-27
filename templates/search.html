@@ -1,0 +1,316 @@
+ {% load staticfiles %}
+ 
+ <!DOCTYPE html>
+<html>
+  <head>
+
+    <style>
+ body {
+  font-family: Arial;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+.example button:hover {
+  background: #0b7dda;
+}
+
+.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Base styling */
+
+
+
+.search__container {
+        padding-top: 64px;
+        width: 430px;
+        margin: 0 auto;
+    
+    }
+
+.search__input {
+        width: 430px;
+        margin: 0 auto;
+        padding: 12px 24px;
+
+        background-color: transparent;
+        transition: transform 250ms ease-in-out;
+        font-size: 14px;
+        line-height: 18px;
+
+        color: #575756;
+        background-color: transparent;
+        border-radius: 50px;
+        border: 1px solid #575756;
+        transition: all 250ms ease-in-out;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+    }
+
+.search__input::placeholder {
+            color: rgba(87, 87, 86, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+.search__input:hover,
+        .search__input:focus {
+            padding: 12px 0;
+            outline: 0;
+            border: 1px solid transparent;
+            border-bottom: 1px solid #575756;
+            border-radius: 0;
+            background-position: 100% center;
+        }
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+  top: 10vh;
+}
+
+
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #00b4cc;
+  background: #00b4cc;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+    position: absolute;
+    left: 60%;
+    height: 44px;
+    width: 45px;
+    border: none;
+    border-radius: 50px;
+    background-color: transparent;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap {
+  width: 30%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Riga street guesser</title>
+    
+    <link rel="stylesheet" href="{% static 'css.css' %}" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+
+    <script>
+
+
+
+    function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+
+function getSearch(){
+  document.getElementById("searchres").innerHTML = "";
+  document.getElementById("actual").style.display = "none";
+searchkey=document.getElementById("searcher").value;
+key = document.getElementById("searcher").value;
+key = key.split(' ').join('-')
+if (key == ""){
+  alert("Please enter something!");
+  document.getElementById("actual").style.display = "flex";
+};
+wburl = wburl + "?search="+key;
+callwm(wburl);
+wburl = "http://dev.tip.corp.tele2.com:3402/rest/T2_Sandbox/_2019/Edijs_Petrovskis/webProject";
+
+
+}
+
+   function runScript(){
+    if (event.keyCode == 13)
+    getSearch();
+        
+
+
+}
+var wburl = "http://dev.tip.corp.tele2.com:3402/rest/T2_Sandbox/_2019/Edijs_Petrovskis/webProject";
+function callwm(wburl){
+  
+  var request = new XMLHttpRequest()
+
+  request.open('GET',wburl , true)
+  document.getElementById("nothing").style.display = "none";
+    request.onload = function(){
+    // header("Access-Control-Allow-Credentials: true");
+    // header("Access-Control-Allow-Origin: http://dev.tip.corp.tele2.com:3402/rest/T2_Sandbox/_2019/Edijs_Petrovskis/webProject?key=bat");
+    // header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    // header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  
+  
+    var data = JSON.parse(this.response)
+    
+    picture.innerHTML = '<img class="img" src="'+data.picture+'" alt="pic">';
+    description.innerHTML = data.description;
+    title.innerHTML = data.title;
+    time = data.date;
+    adress.innerHTML = data.adress;
+    link.innerHTML = '<a href ="'+data.link+'" target="_blank">Click here for more information!</a>';
+    adress_name.innerHTML = data.adress_name;
+    category.innerHTML= data.category;
+
+    var myDate = new Date( time *1000);
+    
+    date.innerHTML = myDate.toLocaleString();
+
+    
+    document.getElementById("searchres").style.display = "flex";
+    if(typeof(data.tempDoc) == 'undefined' ){
+      document.getElementById("nothing").style.display = "flex";
+      };
+      
+    for(var i = 0; i < data.tempDoc.length; i++) {
+      var obj = data.tempDoc[i];
+      
+      
+        // obj.title.forEach(title => {
+        // searchres.innerHTML = '<h1>'+title+'</h1>'});
+      stime = obj.date;
+      var sMyDate =  new Date( stime *1000);
+      sdate = sMyDate.toLocaleString();
+
+      var spicture = '<img class="img" src="'+obj.picture+'" alt="pic" style="width: 50vh; height: auto;">';
+      var stitle ="<h1>"+obj.title+"</h1>";
+      var slink = '<p><a href ="'+obj.link+'" target="_blank">Click here for more information!</a></p>';
+      var sdesc = "<h4 style = 'line-height: 1.5;'>"+ obj.desc+"</h4>";
+      var saddress = "<h5>"+obj.address+"<h5>";
+      var saddress_name = "<h5>"+obj.address_title+"<h5><br>";
+      var sdates = "<h5>"+sdate+"<h5>"
+          var scategory = "<h5>"+obj.category+"<h5>";
+        var all = "<div style='display: flex; margin-bottom: 5vh;background-color: #f7f7f3;'><div>" +spicture+"</div><div style= 'padding: 2vh;'>"+stitle+slink+sdesc+saddress+saddress_name+sdate+scategory+"</div></div>";
+        
+      $("#searchres").append(all);
+     
+}
+  } 
+  request.send()  
+}
+    </script>
+    
+  </head>
+
+ 
+
+  <body style="font-family: 'Montserrat', sans-serif;" onload="callwm(wburl) ">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #333;    border: none;">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img id="rigaLogo" src="https://i.ibb.co/W0QmNZs/rigaLogo.png" alt="rigaLogo" style="height: 3vh; width:auto;"></a>        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class=""><a href="/events">Events</a></li>
+            <li class=""><a href="/meme">Meme</a></li>
+            <li class=""><a href="/weather">Weather</a></li>
+            <li class="dropdown "><a href="#" id="drop1" data-toggle="dropdown" class="dropdown-toggle" role="button">Games <b class="caret"></b></a>
+              <ul role="menu" class="dropdown-menu" aria-labelledby="drop1">
+                  <li role="presentation"><a href="/timet" role="menuitem">Time Trial</a></li>
+                  <li role="presentation"><a href="/freegame" role="menuitem">Free Game</a></li>
+               
+              </ul>
+          </li>
+          </ul>
+
+
+          <ul class="nav navbar-nav navbar-right">
+            <li class=""><a href="/about">About</a></li>
+            <li class=""><a href="/contact">Contact Us</a></li>
+          </ul>
+          
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+    
+  
+        <div class="search">
+           <input id="searcher" type="text" class="search__input" placeholder="Search" onkeypress="runScript()" value=""/>
+           <button type="submit" class="searchButton" onclick="getSearch()">
+             <i class="fa fa-search"></i>
+          </button>
+        </div>
+ 
+
+              
+        <div id="actual" style="    display: flex;
+        position: absolute;
+        top: 20vh;
+        z-index: 1;
+        margin: 10px;
+        background-color: #f7f7f3;">
+        <div id="picture"> </div>
+        <div style="    padding: 2vh;">
+        <h1 id="title"> </h1>
+        <p id="link"></p>
+        <h4 id="description"></h4>
+        <h5 id="date"></h5>
+        <h5 id="adress"></h5>
+        <h5 id="adress_name"></h5>
+        <h5 id="category"></h5>
+        </div></div>
+        <div id="searchres" style="display: none; position: absolute; flex-direction: column; margin: 10px; top: 20vh;">
+
+        </div>
+      <div id="nothing" style="display: none; position: fixed; top: 50vh;  padding: 4vh; width: 100%;">
+        <h1 style="margin: auto;">Sorry nothing was found, try searching something else :(</h1>
+      </div>
+</html>

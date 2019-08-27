@@ -1,0 +1,174 @@
+ {% load staticfiles %}
+ 
+ <!DOCTYPE html>
+<html>
+  <head>
+
+    <style>
+
+
+button {
+  position: relative;
+  outline: none;
+  text-decoration: none;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  height: 60px;
+  width: 210px;
+  opacity: 1;
+  background-color: #ffffff;
+  border: 1px solid rgba(22, 76, 167, 0.6);
+}
+button span {
+  color: #164ca7;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.7px;
+}
+button:hover {
+  animation: rotate 0.7s ease-in-out both;
+}
+button:hover span {
+  animation: storm 0.7s ease-in-out both;
+  animation-delay: 0.06s;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  25% {
+    transform: rotate(3deg) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: rotate(-3deg) translate3d(0, 0, 0);
+  }
+  75% {
+    transform: rotate(1deg) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+}
+@keyframes storm {
+  0% {
+    transform: translate3d(0, 0, 0) translateZ(0);
+  }
+  25% {
+    transform: translate3d(4px, 0, 0) translateZ(0);
+  }
+  50% {
+    transform: translate3d(-3px, 0, 0) translateZ(0);
+  }
+  75% {
+    transform: translate3d(2px, 0, 0) translateZ(0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) translateZ(0);
+  }
+}
+
+
+        </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Riga street guesser</title>
+    
+    <link rel="stylesheet" href="{% static 'css.css' %}" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="shortcut icon" href="">
+
+    <script>
+    function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+function callwm(aurl){
+  var request = new XMLHttpRequest()
+
+  request.open('GET'," http://dev.tip.corp.tele2.com:3402/rest/T2_Sandbox/_2019/Edijs_Petrovskis/webProject?key=go" , true)
+  
+  request.onload = function(){
+  
+    // header("Access-Control-Allow-Credentials: true");
+    // header("Access-Control-Allow-Origin: http://dev.tip.corp.tele2.com:3402/rest/T2_Sandbox/_2019/Edijs_Petrovskis/webProject?key=bat");
+    // header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    // header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  
+  
+    var data = JSON.parse(this.response)
+    meme.innerHTML = '<img class="img" src="'+data.url+'" alt="meme">';
+  } 
+  request.send()
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    </script>
+  </head>
+
+ 
+
+  <body style="overflow: hidden; width: auto; font-family: 'Montserrat', sans-serif;">
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #333;    border: none;">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img id="rigaLogo" src="https://i.ibb.co/W0QmNZs/rigaLogo.png" alt="rigaLogo" style="height: 3vh; width:auto;"></a>        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class=""><a href="/events">Events</a></li>
+            <li class=""><a href="/meme">Meme</a></li>
+            <li class=""><a href="/weather">Weather</a></li>
+            <li class="dropdown "><a href="#" id="drop1" data-toggle="dropdown" class="dropdown-toggle" role="button">Games <b class="caret"></b></a>
+              <ul role="menu" class="dropdown-menu" aria-labelledby="drop1">
+                  <li role="presentation"><a href="/timet" role="menuitem">Time Trial</a></li>
+                  <li role="presentation"><a href="/freegame" role="menuitem">Free Game</a></li>
+               
+              </ul>
+          </li>
+          </ul>
+
+
+          <ul class="nav navbar-nav navbar-right">
+            <li class=""><a href="/about">About</a></li>
+            <li class=""><a href="/contact">Contact Us</a></li>
+          </ul>
+          
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+     
+            <div style="    flex-direction: column;
+            width: 100%;
+            display: flex;
+            position: absolute;
+            padding: 80px;
+            align-items: center;">
+            <button onclick="callwm()" style="margin: 20px;">
+            <span>Generate a meme</span>  
+            </button>
+            <div id="meme" style="display: contents;">
+
+            </div></div> 
+       
+</html>

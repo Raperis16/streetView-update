@@ -1,0 +1,162 @@
+html, body {
+    height: 100%;
+    margin-bottom: 10px;    
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
+
+
+  }
+  #street-view {
+    
+    margin-bottom: 10px;
+  }
+.gm-iv-address{
+
+  display: none;
+}
+
+.button {
+  background-color: #7c7c7c8f;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 300px;
+  border-color: #424542;
+  border-radius: 4px 4px 4px 4px;
+  border-style: solid;
+  border-width: px 0 0;
+  display: inline-block
+ 
+}
+
+.child {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  table-layout: fixed;
+  /* flex-direction: row; */
+}
+.header {
+    height: 100vh;
+    background-image: url(https://images8.alphacoders.com/985/985681.jpg);
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+  }
+.headerHide{
+    display:none;
+
+}
+   
+
+
+.show{
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background: repeating-linear-gradient(
+    45deg,
+    #2db507c9,
+    #2db507c9 10px,
+    #2dc62dcd 10px,
+    #2dc62dcd 20px
+  );
+  color: white;
+  margin-top: 20;
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 30px;
+}
+
+.mystyle {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: rgba(189, 0, 0, 0.666);
+  margin-top: 20;
+  display: none;
+}
+
+.show1{
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background: repeating-linear-gradient(
+    45deg,
+    #a91c1cc9,
+    #a91c1cc9 10px,
+    #ce0303cd 10px,
+    #ce0303cd 20px
+  );
+  color: white;
+  margin-top: 20;
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 30px;
+}
+
+.panel {
+  padding: 5px;
+  text-align: center;
+  background-color: #7c7c7c8f;
+  border-color: #424542;
+  border-radius: 4px 4px 4px 4px;
+  border-style: solid;
+  border-width: px 0 0;
+  padding: 200px;
+  display: none;
+}
+
+
+.close{
+  position: absolute;
+  float: right;
+  font-size: 50px;
+  top: 300px;
+  right: 245px;
+  cursor: pointer;
+  padding: 12px 16px;
+  transform: translate(0%, -50%);
+}
+
+.img{
+  width: auto;
+  height: 70vh;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}

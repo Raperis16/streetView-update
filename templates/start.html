@@ -1,0 +1,125 @@
+ {% load staticfiles %}
+ 
+ <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Street View Containers</title>
+    
+    <link rel="stylesheet" href="{% static 'css.css' %}" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script async defer
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjurs7Df81BxOig4ZYOd-FiUtNeIpZiR4&callback=initialize">
+
+
+
+    </script>   
+<style>
+@import url("https://fonts.googleapis.com/css?family=Roboto:900");
+* {
+  box-sizing: border-box;
+}
+*::before, *::after {
+  box-sizing: border-box;
+}
+
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: inherit;
+  font-family: inherit;
+  margin: 10px;
+}
+button.learn-more {
+  transition: all 0.5s cubic-bezier(0.65, -0.25, 0.25, 1.95);
+  font-weight: 900;
+  color: white;
+  padding: 1.25rem 2rem;
+  background: rgba(255, 255, 255, 0);
+  text-transform: uppercase;
+  font-size: 25px;
+}
+button.learn-more:hover, button.learn-more:focus, button.learn-more:active {
+  letter-spacing: 0.125rem;
+}
+
+
+</style>
+
+  </head>
+
+ 
+
+  <body style="background-color: #333; overflow: hidden;">
+
+<div class="header" id="header" style="position: absolute; width: 100%; height: 100%; background-color: green; z-index: 2000;">
+            <h1 href="/" style="
+          color: white; font-size: 80px;     margin-bottom: 0px;     padding-bottom: 20px;
+      ">TIME TRIAL</h1>
+ <p style="color:white; font-size:20px;     margin-bottom: 120px;
+ font-weight: bold;
+ margin-top: 0px;">The goal is to guess as many street names as possible in 2 minutes</p>
+
+          <button role="button" class="learn-more" onclick="countdown()">Start</button>
+          <a href='/'><button role="button" class="learn-more">MAIN MENU</button></a>
+     
+</div>
+
+
+<div  class="header" id="start"  style="position: absolute; width: 100%; height: 100%; background-color: green; z-index: 2000; color: white;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: none;">
+<h1 style="color: white; position: absolute;">Game starts in <span id="time">3</span></h1>
+</div>
+
+<div  id="myDIV" class="mystyle" style="position: absolute; width: 100%; height: 100%; z-index: 2002220;">
+  <h1 href="/" style="
+color: white;
+">Game Over!</h1>
+<h1 id="point_count1">POINTS: 0
+</h1>
+
+
+
+<button role="button" class=button onclick="ress()" style="
+color: white;
+">PLAY AGAIN</button>
+<button role="button" class=button style="color: white;"><a href='/' style="color:white; text-decoration: none;">MAIN MENU</a></button>
+</div>
+
+    <script src="{% static 'jquery.js' %}"></script>
+    <div class="topnav" style="padding-bottom: 10px; padding-top: 10px; text-align: center;">
+      <a class="active" style="text-decoration: none;
+      color: white;" href='/' >RIGA STREET GUESSER</a>
+    </div>
+    <div id="street-view" style="height: 70%;"></div>
+    
+    <div class="child">
+    <div style="color:white; display: flex; justify-content: space-between; width: 80%;" ">
+    <h1 id="point_count">POINTS: 0</h1>    <h1>Time: <span id="gametimer">02:00</span></h1>
+    </div>
+    <div>
+    <input type="button" class="button" id="1" onclick="time_check_answer(1)" value="" >   <input type="button" class="button" id="2" onclick="time_check_answer(2)" value="">   
+    </div>
+    
+
+
+    <div>
+    <input type="button" class="button" id="3" onclick="time_check_answer(3)" value="">   <input type="button" class="button" id="4"  onclick="time_check_answer(4)" value="">   
+    </div>
+    </div>
+
+    
+
+     
+  </body>
+</html>
